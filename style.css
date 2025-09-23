@@ -1,0 +1,544 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --text-secondary: #b0b0b0;
+    --accent-color: #4caf50;
+    --header-bg: #1e1e1e;
+    --card-bg: #1e1e1e;
+    --hover-bg: rgba(255, 255, 255, 0.1);
+    --border-color: #333;
+    --input-bg: #1e1e1e;
+    --progress-bg: #2a2a2a;
+}
+
+.theme-light {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --text-secondary: #666666;
+    --accent-color: #2196f3;
+    --header-bg: #f5f5f5;
+    --card-bg: #ffffff;
+    --hover-bg: rgba(0, 0, 0, 0.1);
+    --border-color: #ddd;
+    --input-bg: #f9f9f9;
+    --progress-bg: #e0e0e0;
+}
+
+.theme-mid {
+    --bg-color: #f5f5f5;
+    --text-color: #333333;
+    --text-secondary: #666666;
+    --header-bg: #e0e0e0;
+    --card-bg: #ffffff;
+    --hover-bg: rgba(0, 0, 0, 0.1);
+    --border-color: #ccc;
+    --input-bg: #f0f0f0;
+    --progress-bg: #d0d0d0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+    background-color: var(--header-bg);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+}
+
+header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+#hamburger-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+#hamburger-btn:hover {
+    background-color: var(--hover-bg);
+}
+
+#theme-menu {
+    position: absolute;
+    top: 3rem;
+    right: 1rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    min-width: 150px;
+}
+
+#theme-menu.hidden {
+    display: none;
+}
+
+.theme-group {
+    padding: 0.5rem;
+}
+
+.theme-group h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.theme-group:not(:last-child) {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.theme-option {
+    background: none;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: background-color 0.3s ease;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.theme-option:hover {
+    background-color: var(--hover-bg);
+}
+
+#accent-picker {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: none;
+}
+
+#month-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#month-nav button {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#month-nav button:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+#current-month-year {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--accent-color);
+}
+
+main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Add habit section */
+#add-habit {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+#habit-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+#habit-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+#add-btn {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#add-btn:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+#add-btn:active {
+    transform: translateY(0);
+}
+
+/* Habits container */
+#habits-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Individual habit */
+.habit {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease;
+}
+
+.habit:hover {
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.habit-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.habit-name {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.complete-btn {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.complete-btn:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.05);
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #ff5252;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: rgba(255, 82, 82, 0.1);
+    transform: scale(1.1);
+}
+
+/* Progress report */
+.progress-report {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: var(--progress-bg);
+    border-radius: 8px;
+}
+
+.progress-text {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--accent-color);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* Calendar */
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.25rem;
+}
+
+.day {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--progress-bg);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.day:hover {
+    background-color: var(--hover-bg);
+    transform: scale(1.1);
+}
+
+.day.completed {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.day.completed::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8rem;
+    animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.day.empty {
+    background-color: transparent;
+    cursor: default;
+}
+
+.day.today {
+    border: 2px solid #4caf50;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    header {
+        padding: 1.5rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    #hamburger-btn {
+        top: 0.5rem;
+        right: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    #theme-menu {
+        top: 2.5rem;
+        right: 0.5rem;
+        min-width: 120px;
+    }
+
+    .theme-group h4 {
+        font-size: 0.8rem;
+    }
+
+    #accent-picker {
+        height: 35px;
+    }
+
+    #add-habit {
+        flex-direction: column;
+    }
+
+    #habit-input {
+        width: 100%;
+    }
+
+    .habit {
+        padding: 1rem;
+    }
+
+    .habit-name {
+        font-size: 1.25rem;
+    }
+
+    .complete-btn {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.8rem;
+        margin-right: 0.25rem;
+    }
+
+    .calendar {
+        gap: 0.2rem;
+    }
+
+    .day {
+        width: 20px;
+        height: 20px;
+        font-size: 0.7rem;
+    }
+
+    #month-nav {
+        gap: 0.5rem;
+    }
+
+    #month-nav button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    #current-month-year {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.75rem;
+    }
+
+    #hamburger-btn {
+        top: 0.5rem;
+        right: 0.5rem;
+        font-size: 1rem;
+    }
+
+    #theme-menu {
+        top: 2rem;
+        right: 0.5rem;
+        min-width: 100px;
+    }
+
+    .theme-group h4 {
+        font-size: 0.7rem;
+    }
+
+    #accent-picker {
+        height: 30px;
+    }
+
+    .habit-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .complete-btn {
+        padding: 0.2rem 0.3rem;
+        font-size: 0.7rem;
+        margin-right: 0.25rem;
+    }
+
+    .calendar {
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.15rem;
+    }
+
+    .day {
+        width: 18px;
+        height: 18px;
+        font-size: 0.6rem;
+    }
+
+    #month-nav button {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+
+    #current-month-year {
+        font-size: 0.9rem;
+    }
+}
